@@ -1,16 +1,33 @@
+# # Core Framework
+# streamlit==1.39.0
+
+# # LangChain Core
+# langchain==0.3.7
+# langchain-core==0.3.15
+# langchain-community==0.3.5
+
+# # Google Generative AI Integration
+# langchain-google-genai==2.0.5
+# google-generativeai==0.8.3
+# google-ai-generativelanguage==0.6.10
+
+# # Vector Store
+# faiss-cpu==1.9.0
+# numpy==1.26.4
+
 # Core Framework
-streamlit==1.39.0
+streamlit
 
 # LangChain Core
-langchain==0.3.7
-langchain-core==0.3.15
-langchain-community==0.3.5
+langchain
+langchain-core
+langchain-community
 
 # Google Generative AI Integration
-langchain-google-genai==2.0.5
-google-generativeai==0.8.3
-google-ai-generativelanguage==0.6.10
+langchain-google-genai
+google-generativeai
+google-ai-generativelanguage
 
 # Vector Store
-faiss-cpu==1.9.0
-numpy==1.26.4
+faiss-cpu
+numpy
