@@ -1,16 +1,20 @@
 # Core Framework
-streamlit==1.39.0
+streamlit
 
-# LangChain Core
-langchain==0.3.7
-langchain-core==0.3.15
-langchain-community==0.3.5
+# LangChain Core - Compatible versions
+langchain>=0.3.0
+langchain-core>=0.3.0
+langchain-community>=0.3.0
 
-# Google Generative AI Integration
-langchain-google-genai==2.0.5
-google-generativeai==0.8.3
-google-ai-generativelanguage==0.6.10
+# Google Generative AI Integration - Latest compatible versions
+langchain-google-genai>=2.0.0
+google-generativeai>=0.8.0
+google-ai-generativelanguage>=0.6.0
 
-# Vector Store
-faiss-cpu==1.9.0
-numpy==1.26.4
+# Vector Store - Use latest compatible version
+faiss-cpu>=1.8.0
+numpy>=1.24.0
+
+# Additional dependencies
+python-dotenv
+pandas
