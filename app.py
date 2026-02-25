@@ -1,10 +1,10 @@
 import streamlit as st
 import os
 from dotenv import load_dotenv
-from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_core.prompts import PromptTemplate
-from langchain.chains import RetrievalQA
+from langchain_classic.chains.retrieval_qa.base import RetrievalQA
 
 # Page Setup
 st.set_page_config(
@@ -110,14 +110,14 @@ st.markdown("---")
 with st.sidebar:
     st.header("⚙️ System Status")
     
-    if os.getenv("GOOGLE_API_KEY"):
-        st.success("✅ API Key Loaded")
+    if os.getenv("OPENAI_API_KEY"):
+        st.success("✅ OpenAI API Key Loaded")
         st.info("💡 System Ready")
     else:
-        st.warning("⚠️ No API Key Found")
-        key = st.text_input("Enter Google API Key", type="password", key="api_key_input")
+        st.warning("⚠️ No OpenAI API Key Found")
+        key = st.text_input("Enter OpenAI API Key", type="password", key="api_key_input")
         if key:
-            os.environ["GOOGLE_API_KEY"] = key
+            os.environ["OPENAI_API_KEY"] = key
             st.rerun()
     
     st.markdown("---")
@@ -150,7 +150,7 @@ def load_chain():
     
     try:
         # Initialize embeddings
-        embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004")
+        embeddings = OpenAIEmbeddings()
         
         # Load vector store
         vector_store = FAISS.load_local(
@@ -163,11 +163,10 @@ def load_chain():
         retriever = vector_store.as_retriever(search_kwargs={"k": 3})
         
         # Initialize LLM with fixed settings
-        llm = ChatGoogleGenerativeAI(
-            model="models/gemini-2.5-flash",
+        llm = ChatOpenAI(
+            model="gpt-3.5-turbo", # 또는 gpt-4o
             temperature=0.3
         )
-        
         # Define prompt template
         custom_prompt_template = """
 You are a knowledgeable medical assistant. Use the following pieces of retrieved context to answer the user's question.
@@ -215,8 +214,8 @@ for msg in st.session_state.messages:
 if query := st.chat_input("💬 Ask a medical question..."):
     
     # Check for API key
-    if not os.environ.get("GOOGLE_API_KEY"):
-        st.error("⚠️ Please set your Google API Key in the sidebar first.")
+    if not os.environ.get("OPENAI_API_KEY"):
+        st.error("⚠️ Please set your OpenAI API Key in the sidebar first.")
         st.stop()
     
     # Add user message to chat
