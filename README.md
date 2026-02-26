@@ -1,5 +1,7 @@
 # 🩺 의료용 AI 질의응답 비서 (Medical RAG QA Assistant)
 
+🔗 **서비스 링크**: [https://medrag-6a7kjxrcdn95ghagsmh4k6.streamlit.app/](https://medrag-6a7kjxrcdn95ghagsmh4k6.streamlit.app/)
+
 이 프로젝트는 수많은 의료 기록 데이터를 바탕으로, 여러분이 궁금해하시는 **의료 관련 질문에 똑똑하게 대답해 주는 AI 비서**입니다.
 
 마치 의학 사전을 찾아보듯, AI가 미리 학습해 둔 방대한 의료 데이터 속에서 가장 관련 있는 내용을 찾아내어 **정확하고 믿을 수 있는 답변**을 만들어냅니다. (이러한 최신 AI 기술을 **RAG**라고 부릅니다.)
