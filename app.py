@@ -79,32 +79,34 @@ st.markdown("""
         border-color: #DDDDDD;
     }
     
-    /* Chat message styling */
+    /* Chat message styling - 밝은 테마 */
     .stChatMessage {
-        background-color: #2C2C2C;
-        border-radius: 10px;
+        background-color: #FFFFFF;
+        border: 1px solid #E8EAED;
+        border-radius: 12px;
         padding: 1rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.06);
     }
     
-    /* User message */
+    /* 채팅 메시지 텍스트 */
     [data-testid="stChatMessageContent"] {
-        color: #FFFFFF;
+        color: #1A1A1A;
     }
     
-    /* Source box styling with better contrast */
+    /* Source box styling - 밝은 테마 */
     .source-box {
-        background-color: #3D3D3D;
-        border-left: 4px solid #FFC107;
-        padding: 1rem;
+        background-color: #FFF8E1;
+        border-left: 4px solid #FFA000;
+        padding: 0.85rem 1rem;
         margin-top: 1rem;
-        border-radius: 5px;
-        font-size: 0.95rem;
-        color: #E0E0E0;
+        border-radius: 6px;
+        font-size: 0.9rem;
+        color: #4A4A4A;
     }
     
     .source-box strong {
-        color: #FFC107;
+        color: #E65100;
     }
     
     /* Code block in sidebar */
