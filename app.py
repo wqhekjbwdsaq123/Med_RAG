@@ -108,17 +108,25 @@ st.markdown("---")
 
 # Minimal Sidebar - Just API Key Status
 with st.sidebar:
-    st.header("⚙️ System Status")
+    st.header("⚙️ Configuration")
     
-    if os.getenv("OPENAI_API_KEY"):
+    # Check if there's an API key in the environment
+    env_api_key = os.getenv("OPENAI_API_KEY", "")
+    
+    # Input field for API Key
+    api_key_input = st.text_input(
+        "OpenAI API Key", 
+        type="password", 
+        value=env_api_key,
+        help="Paste your OpenAI API key here to start using the assistant.",
+        key="api_key_input"
+    )
+    
+    if api_key_input:
         st.success("✅ OpenAI API Key Loaded")
         st.info("💡 System Ready")
     else:
-        st.warning("⚠️ No OpenAI API Key Found")
-        key = st.text_input("Enter OpenAI API Key", type="password", key="api_key_input")
-        if key:
-            os.environ["OPENAI_API_KEY"] = key
-            st.rerun()
+        st.warning("⚠️ Please provide an OpenAI API Key")
     
     st.markdown("---")
     st.markdown("### 📝 Sample Questions")
@@ -139,18 +147,18 @@ Temperature: 0.3
 Retrieval: Top 3 documents
 Embeddings: text-embedding-004""", language="yaml")
 
-# Load RAG Chain with all settings hardcoded
+# Load RAG Chain with key arguments passed directly
 @st.cache_resource
-def load_chain():
-    """Load the RAG chain with predefined settings"""
+def load_chain(api_key):
+    """Load the RAG chain with user-provided API key"""
     
     # Check if vectorstore exists
     if not os.path.exists("vectorstore"):
         return None, "❌ 'vectorstore' folder not found. Please ensure it exists in the directory."
     
     try:
-        # Initialize embeddings
-        embeddings = OpenAIEmbeddings()
+        # Initialize embeddings with the provided key
+        embeddings = OpenAIEmbeddings(openai_api_key=api_key)
         
         # Load vector store
         vector_store = FAISS.load_local(
@@ -162,10 +170,11 @@ def load_chain():
         # Create retriever with k=3 (top 3 most relevant documents)
         retriever = vector_store.as_retriever(search_kwargs={"k": 3})
         
-        # Initialize LLM with fixed settings
+        # Initialize LLM with the provided key
         llm = ChatOpenAI(
-            model="gpt-3.5-turbo", # 또는 gpt-4o
-            temperature=0.3
+            model="gpt-3.5-turbo", 
+            temperature=0.3,
+            openai_api_key=api_key
         )
         # Define prompt template
         custom_prompt_template = """
@@ -214,7 +223,7 @@ for msg in st.session_state.messages:
 if query := st.chat_input("💬 Ask a medical question..."):
     
     # Check for API key
-    if not os.environ.get("OPENAI_API_KEY"):
+    if not api_key_input:
         st.error("⚠️ Please set your OpenAI API Key in the sidebar first.")
         st.stop()
     
@@ -225,8 +234,8 @@ if query := st.chat_input("💬 Ask a medical question..."):
     
     # Generate assistant response
     with st.chat_message("assistant"):
-        # Load chain
-        chain, status = load_chain()
+        # Load chain with the provided API key
+        chain, status = load_chain(api_key=api_key_input)
         
         if chain:
             with st.spinner("🔍 Searching medical records..."):
