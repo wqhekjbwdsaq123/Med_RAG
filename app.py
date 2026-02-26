@@ -33,15 +33,16 @@ st.markdown("""
         margin-bottom: 2rem;
     }
     
-    /* Sidebar styling */
+    /* Sidebar styling - 밝은 흰 톤 */
     [data-testid="stSidebar"] {
-        background-color: #1E1E1E;
+        background-color: #F8F9FA;
+        border-right: 1px solid #E0E0E0;
     }
     
-    /* 사이드바 내 모든 텍스트 요소를 밝은 색으로 */
+    /* 사이드바 내 모든 텍스트 요소를 어두운 색으로 */
     [data-testid="stSidebar"],
     [data-testid="stSidebar"] * {
-        color: #E0E0E0;
+        color: #333333;
     }
     
     [data-testid="stSidebar"] h1, 
@@ -50,7 +51,7 @@ st.markdown("""
     [data-testid="stSidebar"] h4,
     [data-testid="stSidebar"] h5,
     [data-testid="stSidebar"] h6 {
-        color: #FFFFFF !important;
+        color: #1A1A1A !important;
     }
     
     [data-testid="stSidebar"] p,
@@ -58,24 +59,24 @@ st.markdown("""
     [data-testid="stSidebar"] span,
     [data-testid="stSidebar"] label,
     [data-testid="stSidebar"] div {
-        color: #E0E0E0 !important;
+        color: #333333 !important;
     }
     
     /* 입력 필드 텍스트 */
     [data-testid="stSidebar"] input {
-        color: #FFFFFF !important;
-        background-color: #2C2C2C !important;
-        border-color: #555555 !important;
+        color: #1A1A1A !important;
+        background-color: #FFFFFF !important;
+        border-color: #CCCCCC !important;
     }
     
     /* 도움말(help) 텍스트 */
     [data-testid="stSidebar"] .stTooltipIcon {
-        color: #90A4AE !important;
+        color: #888888 !important;
     }
     
     /* 구분선 */
     [data-testid="stSidebar"] hr {
-        border-color: #444444;
+        border-color: #DDDDDD;
     }
     
     /* Chat message styling */
@@ -156,7 +157,7 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("### 📝 Sample Questions")
     st.markdown("""
-    <div style="color: #E0E0E0;">
+    <div style="color: #555555;">
     • What are the symptoms of allergic rhinitis?<br>
     • Describe the procedure for laparoscopic gastric bypass<br>
     • What is the treatment for chronic sinusitis?<br>
