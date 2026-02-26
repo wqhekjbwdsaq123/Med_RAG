@@ -100,6 +100,7 @@ st.markdown("""
         border-left: 4px solid #FFA000;
         padding: 0.85rem 1rem;
         margin-top: 1rem;
+        margin-bottom: 1rem;
         border-radius: 6px;
         font-size: 0.9rem;
         color: #4A4A4A;
@@ -109,10 +110,23 @@ st.markdown("""
         color: #E65100;
     }
     
-    /* Code block in sidebar */
+    .source-box:last-child {
+        margin-bottom: 1rem;
+    }
+    
+    /* Code block in sidebar - 밝은 테마에 맞게 */
     [data-testid="stSidebar"] code {
-        color: #4FC3F7 !important;
-        background-color: #2C2C2C !important;
+        color: #0D47A1 !important;
+        background-color: #E8F0FE !important;
+        border-radius: 4px;
+        padding: 1px 4px;
+    }
+    
+    [data-testid="stSidebar"] pre,
+    [data-testid="stSidebar"] .stCode {
+        background-color: #F3F4F6 !important;
+        border: 1px solid #E0E0E0 !important;
+        border-radius: 6px !important;
     }
     
     /* Status boxes */
