@@ -38,19 +38,44 @@ st.markdown("""
         background-color: #1E1E1E;
     }
     
-    [data-testid="stSidebar"] .element-container {
+    /* 사이드바 내 모든 텍스트 요소를 밝은 색으로 */
+    [data-testid="stSidebar"],
+    [data-testid="stSidebar"] * {
         color: #E0E0E0;
     }
     
     [data-testid="stSidebar"] h1, 
     [data-testid="stSidebar"] h2, 
-    [data-testid="stSidebar"] h3 {
+    [data-testid="stSidebar"] h3,
+    [data-testid="stSidebar"] h4,
+    [data-testid="stSidebar"] h5,
+    [data-testid="stSidebar"] h6 {
         color: #FFFFFF !important;
     }
     
     [data-testid="stSidebar"] p,
-    [data-testid="stSidebar"] li {
+    [data-testid="stSidebar"] li,
+    [data-testid="stSidebar"] span,
+    [data-testid="stSidebar"] label,
+    [data-testid="stSidebar"] div {
         color: #E0E0E0 !important;
+    }
+    
+    /* 입력 필드 텍스트 */
+    [data-testid="stSidebar"] input {
+        color: #FFFFFF !important;
+        background-color: #2C2C2C !important;
+        border-color: #555555 !important;
+    }
+    
+    /* 도움말(help) 텍스트 */
+    [data-testid="stSidebar"] .stTooltipIcon {
+        color: #90A4AE !important;
+    }
+    
+    /* 구분선 */
+    [data-testid="stSidebar"] hr {
+        border-color: #444444;
     }
     
     /* Chat message styling */
