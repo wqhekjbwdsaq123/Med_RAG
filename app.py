@@ -200,14 +200,19 @@ def load_chain(api_key):
         llm = ChatOpenAI(
             model="gpt-3.5-turbo", 
             temperature=0.3,
+            max_tokens=1024,
             openai_api_key=api_key
         )
         # Define prompt template
         custom_prompt_template = """
-You are a knowledgeable medical assistant. Use the following pieces of retrieved context to answer the user's question.
-If the answer is not in the context, say "I cannot find the answer in the provided medical records."
+You are a knowledgeable medical assistant. Use the following retrieved context to answer the question.
+Always respond in the same language as the user's question (e.g., if the question is in Korean, answer in Korean).
 
-IMPORTANT: You must cite the 'Sample Name' or 'Specialty' provided in the context for every fact you mention.
+Rules:
+- Be concise and clear. Do NOT repeat words or phrases.
+- Only list each symptom, finding, or fact ONCE.
+- If the answer is not in the context, say so clearly.
+- Cite the specialty or source for key facts.
 
 Context:
 {context}
